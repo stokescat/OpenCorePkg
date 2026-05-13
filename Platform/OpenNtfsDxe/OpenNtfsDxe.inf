@@ -38,6 +38,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   OpenCorePkg/OpenCorePkg.dec
+  EfizzerPkg/EfizzerPkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -48,6 +49,7 @@
   UefiBootServicesTableLib
   UefiDriverEntryPoint
   OcStringLib
+  EfizzerLib
 
 [Protocols]
   gEfiDriverBindingProtocolGuid           ## PRODUCES
@@ -64,3 +66,6 @@
 
 [Depex]
   TRUE
+
+[BuildOptions]
+  *_CLANGDWARF_X64_CC_FLAGS = -fsanitize-coverage=trace-pc -fno-inline -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-lto -fno-sanitize=all -fno-stack-protector -fno-sanitize-link-runtime
